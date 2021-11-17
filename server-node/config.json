@@ -1,0 +1,17 @@
+{
+    "server": {
+        "host": "192.168.3.157",
+        "port": 8888,
+        "wss": false,
+        "history": 100,
+        "auth": false
+    },
+    "text": {
+        "limit": 10000
+    },
+    "file": {
+        "expire": 3600,
+        "chunk": 1048576,
+        "limit": 104857600
+    }
+}
