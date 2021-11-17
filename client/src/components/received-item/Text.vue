@@ -20,6 +20,17 @@
                 <div class="align-self-center text-no-wrap">
                     <v-tooltip bottom>
                         <template v-slot:activator="{ on }">
+                            <a :href="`zhuji://ext:8888/addSnippetAct?cct=${meta.content.trim()}`">
+                                <v-btn v-on="on" icon color="grey">
+                                    <v-icon>{{mdiExportVariant }}</v-icon>
+                                </v-btn>
+                            </a>
+                        </template>
+                        <span>投送到珠玑</span>
+                    </v-tooltip>
+                    
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
                             <v-btn v-on="on" icon color="grey" @click="copyText">
                                 <v-icon>{{mdiContentCopy}}</v-icon>
                             </v-btn>
@@ -46,6 +57,7 @@ import {
     mdiChevronDown,
     mdiContentCopy,
     mdiClose,
+    mdiExportVariant,
 } from '@mdi/js';
 
 export default {
@@ -65,9 +77,18 @@ export default {
             mdiChevronDown,
             mdiContentCopy,
             mdiClose,
+            mdiExportVariant,
         };
     },
     methods: {
+        shareText() {
+            this.$toast('navigator only works over HTTPS...');
+            navigator.share({
+                // title: '',
+                text: this.meta.content,
+                // url: '',
+            });
+        },
         copyText() {
             let el = document.createElement('textarea');
             el.value = new DOMParser().parseFromString(this.meta.content, 'text/html').documentElement.textContent;
