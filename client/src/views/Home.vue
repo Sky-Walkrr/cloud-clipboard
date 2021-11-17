@@ -14,7 +14,7 @@
             </v-col>
         </v-row>
 
-        <v-speed-dial
+        <!-- <v-speed-dial
             v-model="fab"
             bottom
             right
@@ -23,8 +23,8 @@
             open-on-hover
             transition="scale-transition"
             class="hidden-md-and-up"
-        >
-            <template v-slot:activator>
+        > -->
+            <!-- <template v-slot:activator>
                 <v-btn
                     v-model="fab"
                     fab
@@ -33,14 +33,14 @@
                 >
                     <v-icon>{{mdiPlus}}</v-icon>
                 </v-btn>
-            </template>
-            <v-btn fab dark small color="primary" @click="dialog = true; mode = 'file'">
+            </template> -->
+            <v-btn fab dark large bottom left fixed color="primary" @click="dialog = true; mode = 'file'">
                 <v-icon>{{mdiFileDocumentOutline}}</v-icon>
             </v-btn>
-            <v-btn fab dark small color="primary" @click="dialog = true; mode = 'text'">
+            <v-btn fab dark large bottom right fixed color="primary" @click="dialog = true; mode = 'text'">
                 <v-icon>{{mdiText}}</v-icon>
             </v-btn>
-        </v-speed-dial>
+        <!-- </v-speed-dial> -->
         <v-dialog
             v-model="dialog"
             fullscreen
