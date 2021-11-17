@@ -9,6 +9,7 @@
             :counter="$root.config.text.limit"
             placeholder="请输入需要发送的文本"
             v-model="$root.send.text"
+            @keyup.ctrl.enter="send"
         ></v-textarea>
         <div class="text-right">
             <v-btn
