@@ -8,7 +8,7 @@
                     <div class="title text-truncate text--primary" @click="expand = !expand">
                         文本消息<v-icon>{{expand ? mdiChevronUp : mdiChevronDown}}</v-icon>
                     </div>
-                    <div class="text-truncate" @click="expand = !expand" v-html="meta.content.trim()" v-linkified></div>
+                    <div class="text-truncate" @click="expand = !expand" v-html="textPreview()" v-linkified style="overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;white-space:normal !important;"></div>
                     <v-expand-transition>
                         <div v-show="expand">
                             <v-divider class="my-2"></v-divider>
@@ -20,7 +20,7 @@
                 <div class="align-self-center text-no-wrap">
                     <v-tooltip bottom>
                         <template v-slot:activator="{ on }">
-                            <a :href="`zhuji://ext:8888/addSnippetAct?cct=${meta.content.trim()}`">
+                            <a :href="`zhuji://ext:8888/addSnippetAct?cct=${encodeContent()}`">
                                 <v-btn v-on="on" icon color="grey">
                                     <v-icon>{{mdiExportVariant }}</v-icon>
                                 </v-btn>
@@ -81,6 +81,21 @@ export default {
         };
     },
     methods: {
+        encodeContent() {
+            const content = new DOMParser().parseFromString(this.meta.content, 'text/html').documentElement.textContent;
+            const result = encodeURI(content)
+            return result;
+        },
+        textPreview() {
+            let sanitizedContent = this.meta.content.trim().replace(/\n/g, '');
+            const strLen = sanitizedContent.length
+            const limit = 30;
+            const semiLmt = Math.round(limit/2)
+            if (strLen > limit) {
+                sanitizedContent = sanitizedContent.substr(0, semiLmt) + "……" + sanitizedContent.substr(strLen - semiLmt, strLen)
+            }
+            return sanitizedContent;
+        },
         shareText() {
             this.$toast('navigator only works over HTTPS...');
             navigator.share({
