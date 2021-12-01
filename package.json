@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "pack": "npm run build --prefix client/",
+    "serve": "cd server-node/ && pm2 start main.js --name MyCloudClipboard",
+    "restart": "pm2 reload MyCloudClipboard"
+  }
+}
