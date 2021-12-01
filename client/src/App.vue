@@ -82,7 +82,7 @@
             dark
         >
             <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-            <v-toolbar-title>云剪贴板</v-toolbar-title>
+            <v-toolbar-title>鸿雁</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-tooltip left>
                 <template v-slot:activator="{ on }">
