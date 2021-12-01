@@ -15,7 +15,7 @@ module.exports = {
         port: 8889,
         proxy: {
             '/*': {
-                target: 'http://localhost:8888/',
+                target: 'http://localhost:8889/',
                 changeOrigin: true,
             },
         },
