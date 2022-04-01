@@ -12,6 +12,21 @@
 
 以及……这东西本身大概就会有不少奇怪的 BUG \_(:зゝ∠)\_
 
+## Quick start
+
+PM2 is required before running commands below.
+
+```shell
+# client package
+npm run pack
+
+# start the server
+npm run serve
+
+# restart server
+npm run restart
+```
+
 ## 截图
 
 <details>
