@@ -6,7 +6,7 @@
             <v-card-text class="d-flex flex-row align-center">
                 <div class="flex-grow-1 mr-2" style="min-width: 0">
                     <div class="title text-truncate text--primary" @click="expand = !expand">
-                        文本消息<v-icon>{{expand ? mdiChevronUp : mdiChevronDown}}</v-icon>
+                        {{`文本消息（共${meta.content.length}字）`}}<v-icon>{{expand ? mdiChevronUp : mdiChevronDown}}</v-icon>
                     </div>
                     <div class="text-truncate" @click="expand = !expand" v-html="textPreview()" v-linkified style="overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;white-space:normal !important;"></div>
                     <v-expand-transition>
