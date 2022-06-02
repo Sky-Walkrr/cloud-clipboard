@@ -1,7 +1,7 @@
 {
   "scripts": {
     "pack": "npm run build --prefix client/",
-    "serve": "cd server-node/ && pm2 start main.js --name MyCloudClipboard",
+    "serve": "cd server-node/ && pm2 start main.js --name MyCloudClipboard --log-date-format=\"YYYY-MM-DD HH:mm:ss.SSS\"",
     "restart": "pm2 reload MyCloudClipboard"
   }
 }
