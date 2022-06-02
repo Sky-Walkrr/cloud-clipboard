@@ -8,7 +8,8 @@ import path from 'path';
  *      port: Number,
  *      wss: Boolean,
  *      history: Number,
- *      auth: Boolean
+ *      auth: Boolean,
+ *      autoHost: Boolean
  *  },
  *  text: {
  *      limit: Number,

@@ -13,13 +13,20 @@ import {
 import {
     writeJSON,
     wsBoardcast,
+    getLocalIp,
 } from './util.js';
 
 const router = new KoaRouter;
 
+const autoHost = config.server.autoHost;
+// Get local ip automatically 
+const localIp = getLocalIp();
+
+const host = (autoHost && localIp) ? localIp : config.server.host;
+
 router.get('/server', async ctx => {
     ctx.body = {
-        'server': `ws${config.server.wss ? 's' : ''}://${config.server.host}:${config.server.port}/push`,
+        'server': `ws${config.server.wss ? 's' : ''}://${host}:${config.server.port}/push`,
         'auth': !!config.server.auth,
     };
 });
