@@ -83,7 +83,7 @@ export default {
     methods: {
         encodeContent() {
             const content = new DOMParser().parseFromString(this.meta.content, 'text/html').documentElement.textContent;
-            const result = encodeURI(content)
+            const result = encodeURI(content.trim())
             return result;
         },
         textPreview() {
