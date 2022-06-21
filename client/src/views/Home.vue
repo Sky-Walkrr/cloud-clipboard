@@ -65,12 +65,36 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
+
+        <v-dialog
+            v-model="editDialog"
+            fullscreen
+            hide-overlay
+            transition="dialog-bottom-transition"
+            scrollable
+        >
+            <v-card>
+                <v-toolbar dark color="primary" class="flex-grow-0">
+                    <v-btn icon @click="editDialog = false">
+                        <v-icon>{{mdiClose}}</v-icon>
+                    </v-btn>
+                    <v-toolbar-title>编辑文本内容</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                </v-toolbar>
+                <v-card-text class="px-4">
+                    <div class="my-4">
+                        <edit-text v-if="editDialog"></edit-text>
+                    </div>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
     </v-container>
 </template>
 
 <script>
 import SendText from '@/components/SendText.vue';
 import SendFile from '@/components/SendFile.vue';
+import EditText from '@/components/EditText.vue';
 import ReceivedText from '@/components/received-item/Text.vue';
 import ReceivedFile from '@/components/received-item/File.vue';
 import {
@@ -86,11 +110,13 @@ export default {
         SendFile,
         ReceivedText,
         ReceivedFile,
+        EditText,
     },
     data() {
         return {
             fab: false,
             dialog: false,
+            editDialog: false,
             mode: null,
             mdiPlus,
             mdiFileDocumentOutline,

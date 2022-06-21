@@ -20,6 +20,15 @@
                 <div class="align-self-center text-no-wrap">
                     <v-tooltip bottom>
                         <template v-slot:activator="{ on }">
+                            <v-btn v-on="on" icon color="grey" @click="editText">
+                                <v-icon>{{mdiClipboardEdit}}</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>编辑</span>
+                    </v-tooltip>
+
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
                             <a :href="`zhuji://ext:8888/addSnippetAct?cct=${encodeContent()}`">
                                 <v-btn v-on="on" icon color="grey">
                                     <v-icon>{{mdiExportVariant }}</v-icon>
@@ -58,7 +67,9 @@ import {
     mdiContentCopy,
     mdiClose,
     mdiExportVariant,
+    mdiClipboardEdit,
 } from '@mdi/js';
+import Vue from 'vue';
 
 export default {
     name: 'received-text',
@@ -78,9 +89,19 @@ export default {
             mdiContentCopy,
             mdiClose,
             mdiExportVariant,
+            mdiClipboardEdit,
         };
     },
     methods: {
+        editText() {
+            const content = new DOMParser().parseFromString(this.meta.content, 'text/html').documentElement.textContent.trim();
+            // console.log(`Content: ${content}`);
+            // Vue.set(this.$root.send, 'editText', content);
+            this.$root.send.editText = content;
+            this.$root.send.editId = this.meta.id;
+            this.$parent.$parent.editDialog = true
+            console.log(this.$root.send);
+        },
         encodeContent() {
             const content = new DOMParser().parseFromString(this.meta.content, 'text/html').documentElement.textContent;
             const result = encodeURI(content.trim())

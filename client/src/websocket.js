@@ -7,6 +7,14 @@ export default {
             authCodeDialog: false,
             retry: 0,
             event: {
+                update: data => {
+                    for (const item of this.$root.received) {
+                        if (item.id === data.id) {
+                            item.content = data.content;
+                            break;
+                        }
+                    }
+                },
                 receive: data => {
                     this.$root.received.unshift(data);
                 },
